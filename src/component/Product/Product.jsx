@@ -4,6 +4,7 @@ import ImgProduct from 'assets/image/sweater.png'
 import ImgCart from 'assets/image/cart.png'
 
 import './Product.css'
+import CardProduct from "./CardProduct";
 
 class Product extends Component {
 
@@ -12,18 +13,10 @@ class Product extends Component {
         name: 'Pipit'
     }
 
-    handlePlus = () => {
+    handleCounterChange =(newValue) => {
         this.setState({
-            order: this.state.order + 1
+            order:newValue
         })
-    }
-
-    handleMinus = () => {
-        if(this.state.order > 0) {
-            this.setState({
-                order: this.state.order - 1
-            })
-        }
     }
 
     render() {
@@ -39,19 +32,7 @@ class Product extends Component {
                     </div>
                 </div>
 
-                <div className="card">
-                    <div className="img-thumb-prod">
-                        <img src={ImgProduct} alt="sweater" />
-                    </div>
-                    <p className="product-title"> Sweater Cakep </p>
-                    <p className="product-price">Rp 650.000</p>
-
-                    <div className="counter">
-                        <button className="minus" onClick={this.handleMinus}>-</button>
-                        <input className="text-count" type="text" value={this.state.order} />
-                        <button className ="plus" onClick={this.handlePlus}>+</button>
-                    </div>
-                </div>
+                <CardProduct onCounterChange={(value) => this.handleCounterChange(value)} />
             </Fragment>
         )
     }
